@@ -1,6 +1,6 @@
 # Take TGLF dumpfiles from JETTO run and run them standalone.
 # Usage: bash run_jetto_tglf_dumpfiles.sh one_or_more_directories
-# If executable in path: run_jetto_tglf_dumpfiles one_or_more_directories
+# If executable in path: run_jetto_tglf_dumpfiles.sh one_or_more_directories
 
 # Hard-coded variable.  = 0: Check before deleting existing files
 #                      != 0: Doesn't check
