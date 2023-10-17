@@ -60,6 +60,7 @@ do
 		mkdir tglf_standalone/$i
 		cp $i.out.tglf.localdump tglf_standalone/$i/input.tglf
 		tglf -e tglf_standalone/$i
+		reformat_tglf_outputs.sh tglf_standalone/$i
 	done
 	
 	# Return to directory where script was executed
