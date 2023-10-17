@@ -1,7 +1,7 @@
 # Take default tglf output files and make new ones that are easier to 
 # read using np.loadtxt.
-# Usage: bash run_jetto_tglf_dumpfiles.sh one_or_more_directories
-# If executable in path: run_jetto_tglf_dumpfiles.sh one_or_more_directories
+# Usage: bash reformat_tglf_outputs.sh one_or_more_directories
+# If executable in path: reformat_tglf_outputs.sh one_or_more_directories
 
 f_ext="" # file extension
 
