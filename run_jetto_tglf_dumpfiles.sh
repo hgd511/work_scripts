@@ -55,12 +55,14 @@ do
 	
 	# Copy dumpfiles into correspondingly numbered directories inside
 	# tglf_standalone, renaming them to input.tglf, and execute tglf
-	for i in $(seq 1 $number_of_tglf_points)
+	#for i in $(seq 1 $number_of_tglf_points)
+	for i in $(seq 1 2)
 	do
 		mkdir tglf_standalone/$i
 		cp $i.out.tglf.localdump tglf_standalone/$i/input.tglf
 		tglf -e tglf_standalone/$i
 		reformat_tglf_outputs.sh tglf_standalone/$i
+		echo "TGLF run $i completed."
 	done
 	
 	# Return to directory where script was executed
