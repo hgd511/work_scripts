@@ -54,6 +54,16 @@ do
 	fi
 	tail -n $NKY out.tglf.eigenvalue_spectrum > reformatted_outputs/eigenvalue_spectrum${f_ext}
 	
+	# Spectral shift spectrum
+	doc_length=$(cat out.tglf.spectral_shift_spectrum | wc -l)
+	expected_length=$(( $NKY + 5 ))
+	if [ $doc_length != $expected_length ]; then
+		echo "A check has failed, implying the out.tglf.spectral_shift_spectrum"\
+		"format has changed. Please investigate before continuing."
+		exit
+	fi
+	tail -n $NKY out.tglf.spectral_shift_spectrum > reformatted_outputs/spectral_shift_spectrum${f_ext}
+	
 	# Flux spectrum
 	doc_length=$(cat out.tglf.sum_flux_spectrum | wc -l)
 	expected_length=$(( ($NKY + 2) * $NSPECIES * $NFIELDS ))
@@ -111,4 +121,5 @@ do
 			done
 		done
 	done	
+	cd -
 done
