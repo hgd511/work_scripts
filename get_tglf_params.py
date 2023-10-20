@@ -20,3 +20,18 @@ def tglf_input_param(variable, tglf_directory):
 	df = df.drop(index = 2)
 	val = float(df[variable][0])
 	return val
+
+# Read TGLF NX parameter string, returns float
+def get_tglf_Nparameter(variable, tglf_directory):
+	file = open(tglf_directory + 'out.tglf.QL_flux_spectrum') 
+	content = file.readlines() 
+	data = content[3].split()
+	if variable == 'NSPECIES':
+		val = data[1]
+	elif variable == 'NFIELDS':
+		val = data[2]
+	elif variable == 'NKY':
+		val = data[3]
+	elif variable == 'NMODES':
+		val = data[4]
+	return val
