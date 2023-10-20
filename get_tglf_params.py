@@ -34,4 +34,7 @@ def get_tglf_Nparameter(variable, tglf_directory):
 		val = data[3]
 	elif variable == 'NMODES':
 		val = data[4]
+	else:
+		print("Nparameter not recognised. Please check guide.")
+		raise NameError
 	return val
