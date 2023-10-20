@@ -28,21 +28,13 @@ do
 	tail -n $NKY out.tglf.ky_spectrum > reformatted_outputs/ky_spectrum${f_ext}
 	
 	# Number of species
-	NSPECIES=$(grep -w 'NS' input.tglf.gen | cut -d " " -f 1)
+	NSPECIES=$(head -n 4 out.tglf.QL_flux_spectrum | tail -n 1 | awk '{print $2}')
 	
 	# Number of fields
-	NFIELDS=1
-	BPER_SWITCH=$(grep -w 'USE_BPER' input.tglf.gen | cut -d " " -f 1)
-	if [ $BPER_SWITCH == "T" ]; then
-		NFIELDS=$(($NFIELDS+1))
-	fi
-	BPAR_SWITCH=$(grep -w 'USE_BPAR' input.tglf.gen | cut -d " " -f 1)
-	if [ $BPAR_SWITCH == "T" ]; then
-		NFIELDS=$(($NFIELDS+1))
-	fi
+	NFIELDS=$(head -n 4 out.tglf.QL_flux_spectrum | tail -n 1 | awk '{print $3}')
 	
 	# Number of modes
-	NMODES=$(grep -w 'NMODES' input.tglf.gen | cut -d " " -f 1)
+	NMODES=$(head -n 4 out.tglf.QL_flux_spectrum | tail -n 1 | awk '{print $5}')
 
 	# Eigenvalue spectrum
 	doc_length=$(cat out.tglf.eigenvalue_spectrum | wc -l)
