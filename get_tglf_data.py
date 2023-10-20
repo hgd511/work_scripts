@@ -46,6 +46,34 @@ def tglf_QL_flux_spectrum(flux_type, species, field, mode, tglf_directory):
 		   str(field) + '_m' + str(mode) + '_QL_flux_spectrum')[:, flux_index])
 	return data
 
+# Calculate the flux spectrum for a given mode from the TGLF outputs
+def get_tglf_flux_spectrum_for_given_mode(flux_type, species, field, mode, tglf_directory):
+	field_data = tglf_field_spectrum(field, mode, tglf_directory)
+	QL_weight_data = tglf_QL_flux_spectrum(flux_type, species, field, mode, tglf_directory)
+	kys = tglf_ky_spectrum(tglf_directory)
+	NKY = len(kys)
+	
+	pre_integral_flux = field_data * QL_weight_data
+	dky0, ky0 = 0.0, 0.0 # initialise integration quantities
+	flux0, flux1, flux_out = 0.0, 0.0, 0.0
+	
+	fluxes = []
+	for i in range(NKY):
+		ky1 = kys[i]
+		if (i==0):
+			dky1=ky1
+		else:
+			dky = np.log(ky1/ky0)/(ky1-ky0)
+			dky1 = ky1*(1.0 - ky0*dky)
+			dky0 = ky0*(ky1*dky - 1.0)
+		flux1 = pre_integral_flux[i]
+		flux_out = dky0*flux0 + dky1*flux1
+		fluxes.append(flux_out)
+		flux0 = flux1
+		ky0 = ky1
+	return np.array(fluxes)
+
+
 # Return index for given flux type string
 def get_flux_type_index(flux_type):
 	if flux_type == 'particle':
