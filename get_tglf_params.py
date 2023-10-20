@@ -37,4 +37,4 @@ def get_tglf_Nparameter(variable, tglf_directory):
 	else:
 		print("Nparameter not recognised. Please check guide.")
 		raise NameError
-	return val
+	return int(val)
