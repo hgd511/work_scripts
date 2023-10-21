@@ -1,4 +1,5 @@
 import numpy as np
+from get_tglf_params import *
 
 # Read TGLF ky spectrum
 def tglf_ky_spectrum(tglf_directory):
@@ -90,3 +91,18 @@ def get_flux_type_index(flux_type):
 		print("Flux type not recognised. Please check guide.")
 		raise NameError
 	return flux_index
+
+# Get gbflux out for given species, either particle or energy
+def get_gbflux_out(flux_type, species, tglf_directory):
+	NSPECIES = get_tglf_Nparameter('NSPECIES', tglf_directory)
+	data = np.loadtxt(tglf_directory + 'out.tglf.gbflux')
+	if flux_type == 'particle':
+		# index particle flux of given species
+		flux_out = data[species - 1]
+	elif flux_type == 'energy':
+		# index particle flux of given species
+		flux_out = data[NSPECIES + species - 1]
+	else:
+		print("get_gbflux_out() only takes flux_type = 'particle' or 'energy'")
+		raise NameError
+	return flux_out

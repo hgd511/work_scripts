@@ -113,7 +113,10 @@ do
 			done
 		done
 	done	
-	dir=$(pwd)
-	python $work_script_dir/run_tglf_tests.py $dir/
+	
+	# Conduct tests to make sure data is as expected
+	python $work_script_dir/run_tglf_tests.py .
+	
+	# Return to original directory
 	cd -
 done

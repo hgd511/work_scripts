@@ -15,14 +15,11 @@ def flux_output_test(flux_type, species, tglf_directory):
 	flux_data = 0.0
 	for field in range(1, NFIELDS+1):
 		flux_data = flux_data + np.sum(tglf_flux_spectrum(flux_type, species, field, tglf_directory))
-				
-	# Output total flux data
-	data = np.loadtxt(tglf_directory + 'out.tglf.gbflux')
-	
+
 	# test particle fluxes
 	if flux_type == 'particle':
-		# index particle flux of given species
-		flux_out = data[species - 1]
+		# get gb particle flux of given species
+		flux_out = get_gbflux_out(flux_type, species, tglf_directory)
 		if ((flux_data / flux_out) - 1.0 > 1E-4):
 			print(flux_data, flux_out)
 			print("Flux data and output do not match. Please investigate before continuining.")
@@ -31,7 +28,7 @@ def flux_output_test(flux_type, species, tglf_directory):
 	
 	# test energy fluxes
 	elif flux_type == 'energy':
-		flux_out = data[NSPECIES + species - 1]
+		flux_out = get_gbflux_out(flux_type, species, tglf_directory)
 		if ((flux_data / flux_out) - 1.0 > 1E-4):
 			print(flux_data, flux_out)
 			print("Flux data and output do not match. Please investigate before continuining.")
