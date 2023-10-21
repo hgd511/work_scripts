@@ -1,0 +1,17 @@
+To use, put work_scripts in PATH and export it as work_script_dir, e.g.
+in bashrc:
+
+export PATH=$PATH:/home/hdudding/work/PostDoc/DTP/work_scripts
+export work_script_dir=/home/hdudding/work/PostDoc/DTP/work_scripts
+
+Basic functionality:
+
+$ run_jetto_tglf_dumpfiles.sh one_or_more_jetto_run_directories
+
+Can reformat_tglf_outputs.sh a single tglf directory, e.g.
+
+$ reformat_tglf_outputs.sh one_or_more_tglf_directories
+
+To read tglf data and parameters for analysis, use get_tglf_params.py 
+and get_tglf_data.py functions.
+
