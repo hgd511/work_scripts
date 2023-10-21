@@ -61,6 +61,7 @@ do
 		cp $i.out.tglf.localdump tglf_standalone/$i/input.tglf
 		tglf -e tglf_standalone/$i
 		reformat_tglf_outputs.sh tglf_standalone/$i
+		python $work_script_dir/run_tglf_tests.py tglf_standalone/$i/
 		echo "TGLF run $i completed."
 	done
 	
