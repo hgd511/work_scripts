@@ -8,4 +8,5 @@ do
 
 	head -n $(( 7+$NIONS+$NGRID )) TCI_debug.dat | tail -n $NGRID  > tci_grid
 	
+	echo "tci_grid generated."
 done
