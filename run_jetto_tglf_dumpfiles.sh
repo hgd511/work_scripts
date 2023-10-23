@@ -19,6 +19,9 @@ do
 		exit
 	fi
 	
+	# Reformat TCI outputs
+	reformat_jetto_tci_outputs.sh .
+	
 	# Delete any existing profiles.CDF and timetraces.PDF files, 
 	# then generate from data
 	if test -f profiles.CDF || test -f timetraces.CDF; then
@@ -66,4 +69,5 @@ do
 	
 	# Return to directory where script was executed
 	cd -
+
 done
