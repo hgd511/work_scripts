@@ -27,6 +27,12 @@ do
 		i=$(($i+1))
 	done
 	
+	# ion quantities
+	for i in $(seq 1 $NIONS)
+	do
+		head -n $(( 6 + $NIONS + $i * (1 + $NGRID) )) TCI_debug.dat | tail -n $NGRID > reformatted_jetto_tci/ni_${i}_Ti_vtor_vpol_a_masses_z_charges
+	done
+	
 	# electron quantities
 	elec_header=$(grep -n " rho ne Te vtor_e vpol_e Zeff ns" TCI_debug.dat | cut -d : -f 1)
 	
