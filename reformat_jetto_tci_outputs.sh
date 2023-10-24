@@ -49,4 +49,6 @@ do
 	
 	echo "Reformatted jetto tci outputs generated."
 	
+	cd -
+	
 done
